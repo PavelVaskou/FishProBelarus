@@ -5,23 +5,23 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/nav_reservoirs"
             android:icon="@drawable/water"
             android:title="Водоемы" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_fish"
             android:icon="@drawable/menu_fish"
             android:title="Рыбы" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_rigging"
             android:icon="@drawable/tackle"
             android:title="Снасти" />
         <item
-            android:id="@+id/nav_manage"
+            android:id="@+id/nav_maps"
             android:icon="@drawable/map_icon"
             android:title="Карты" />
         <item
-            android:id="@+id/nav_hack"
+            android:id="@+id/nav_useful"
             android:icon="@drawable/uzel"
             android:title="Полезное" />
 
@@ -32,7 +32,7 @@
             <item
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:title="Поделиться"/>
             <item
                 android:id="@+id/nav_send"
                 android:icon="@drawable/ic_menu_send"
