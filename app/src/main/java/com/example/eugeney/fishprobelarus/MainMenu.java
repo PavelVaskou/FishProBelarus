@@ -13,7 +13,6 @@ public class MainMenu extends AppCompatActivity {
 
     ListView lvMain;
 
-    /** Called when the activity is first created. */
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_menu);
@@ -43,6 +42,7 @@ public class MainMenu extends AppCompatActivity {
                 Log.d(LOG_TAG, "itemSelect: nothing");
             }
         });
-
+            
     }
+
 }
