@@ -3,25 +3,22 @@ package com.example.eugeney.fishprobelarus;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class FishList extends AppCompatActivity {
     InputStream mInputStream;
 
-    String[] fish;
-    List<String[]> fishs = new ArrayList<>();
-    int count = 0;
+    String[] fishCSV;
+    List<String> fishName = new ArrayList<>();
+    List<InformationFish> fishes = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +26,16 @@ public class FishList extends AppCompatActivity {
         setContentView(R.layout.activity_fish_list);
 
         readCSV();
+        arrFishIfo();
+        // получаем элемент ListView
+        ListView fishList = (ListView) findViewById(R.id.fishList);
+
+        // создаем адаптер
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_list_item_1, fishName);
+
+        // устанавливаем для списка адаптер
+        fishList.setAdapter(adapter);
 
     }
 
@@ -39,20 +46,24 @@ public class FishList extends AppCompatActivity {
         try{
             String csvLine;
             while ((csvLine = reader.readLine()) != null){
-                fish = csvLine.split(";");
+                fishCSV = csvLine.split(";");
                 try {
-                    Log.e("Date"," " + fish[0] + " " + fish[1] + " " + fish[2] + " " + fish[3]);
+                    Log.e("Date"," " + fishCSV[0] + " " + fishCSV[1] + " " + fishCSV[2] + " " + fishCSV[3]);
                 }catch (Exception e){
                     Log.e("Problem", e.toString());
                 }
 
-                fishs.add(fish);
-
-                count++;
+                fishes.add(new InformationFish(fishCSV[0],fishCSV[1],fishCSV[2],fishCSV[3]));
             }
         }
         catch (IOException ex){
             throw new RuntimeException("Error in resding CSV file: "+ ex);
+        }
+    }
+
+    private void arrFishIfo(){
+        for (int i = 1; i< fishes.size(); i++){
+            fishName.add(fishes.get(i).name);
         }
     }
 

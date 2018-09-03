@@ -2,20 +2,15 @@ package com.example.eugeney.fishprobelarus;
 
 public class InformationFish {
     String name;
-    String text;
-    String data;
-    private int fishResource;
+    String info;
+    String image;
+    String id;
 
-    public InformationFish(String name, String data, int fishResource){
+    public InformationFish(String id, String name, String info, String image){
         this.name = name;
-        this.fishResource = fishResource;
-        this.data = data;
-    }
-
-    public InformationFish(String name,String text, String data){
-        this.name = name;
-        this.text = text;
-        this.data = data;
+        this.info = info;
+        this.image = image;
+        this.id = id;
     }
 
     public void setName(String name) {
@@ -26,28 +21,28 @@ public class InformationFish {
         return name;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setInfo(String info) {
+        this.info = info;
     }
 
-    public String getText() {
-        return text;
+    public String getInfo() {
+        return info;
     }
 
-    public void setData(String data) {
-        this.data = data;
+    public void setImage(String image) {
+        this.image = image;
     }
 
-    public String getData() {
-        return data;
+    public String getImage() {
+        return image;
     }
 
-    public int getFishResource() {
-        return this.fishResource;
+    public String getId() {
+        return this.id;
     }
 
-    public void setFishResource(int flagResource) {
-        this.fishResource = flagResource;
+    public void setId(String id) {
+        this.id = id;
     }
 
 }

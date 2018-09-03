@@ -41,7 +41,7 @@ public class JSONHelper {
     private static class DataItems {
         private List<InformationFish> fishs;
 
-        List<InformationFish> getPhones() {
+        List<InformationFish> getFishs() {
             return fishs;
         }
         void setFishs(List<InformationFish> fishs) {
