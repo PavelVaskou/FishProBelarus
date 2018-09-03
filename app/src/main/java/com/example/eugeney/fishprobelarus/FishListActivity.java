@@ -13,11 +13,12 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FishList extends AppCompatActivity {
+public class FishListActivity extends AppCompatActivity {
     InputStream mInputStream;
 
     String[] fishCSV;
     List<String> fishName = new ArrayList<>();
+    List<String> fishImage = new ArrayList<>();
     List<InformationFish> fishes = new ArrayList<>();
 
     @Override
@@ -26,16 +27,13 @@ public class FishList extends AppCompatActivity {
         setContentView(R.layout.activity_fish_list);
 
         readCSV();
-        arrFishIfo();
+        arrFishInfo();
         // получаем элемент ListView
-        ListView fishList = (ListView) findViewById(R.id.fishList);
+        ListView fishList = findViewById(R.id.fishList);
 
-        // создаем адаптер
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_list_item_1, fishName);
+        FishAdapter fishAdapter = new FishAdapter(this, R.layout.item_list, fishes);
 
-        // устанавливаем для списка адаптер
-        fishList.setAdapter(adapter);
+        fishList.setAdapter(fishAdapter);
 
     }
 
@@ -61,49 +59,10 @@ public class FishList extends AppCompatActivity {
         }
     }
 
-    private void arrFishIfo(){
+    private void arrFishInfo(){
         for (int i = 1; i< fishes.size(); i++){
             fishName.add(fishes.get(i).name);
+            fishImage.add(fishes.get(i).image);
         }
     }
-
-   /* protected String doInBackground(Void... voids) {
-        String json = null;
-        try {
-            InputStream is = getAssets().open("pisces.json");
-            int size = is.available();
-            byte[] buffer = new byte[size];
-            is.read(buffer);
-            is.close();
-            json = new String(buffer, "UTF-8");
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            return null;
-        }
-        System.out.print(json);
-        return json;
-    }
-    protected void onPostExecute(String strJson) {
-
-        JSONObject dataJsonObj = null;
-        String secondName = "";
-        try {
-            dataJsonObj = new JSONObject(strJson);
-            JSONArray pisces = dataJsonObj.getJSONArray("pisces");
-
-            for (int i = 0; i < pisces.length(); i++) {
-                JSONObject fish = pisces.getJSONObject(i);
-
-                String name = fish.getString("name");
-                String text = fish.getString("text");
-                String date = fish.getString("date");
-
-                informationFish.add(new InformationFish(name,text, date));
-            }
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }*/
-
 }

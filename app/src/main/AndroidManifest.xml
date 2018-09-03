@@ -20,11 +20,11 @@
             android:name=".MainMenu"
             android:label="@string/title_activity_navigation"
             android:theme="@style/AppTheme" />
-        <activity android:name=".FishList" />
         <activity android:name=".Reservoirs" />
         <activity android:name=".Rigging" />
         <activity android:name=".Maps" />
-        <activity android:name=".Useful"></activity>
+        <activity android:name=".Useful" />
+        <activity android:name=".FishListActivity"></activity>
     </application>
 
 </manifest>

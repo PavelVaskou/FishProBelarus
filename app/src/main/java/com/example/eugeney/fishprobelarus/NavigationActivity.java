@@ -76,7 +76,7 @@ public class NavigationActivity extends AppCompatActivity
             Intent intent = new Intent(this, Reservoirs.class);
             startActivity(intent);
         } else if (id == R.id.nav_fish) {
-            Intent intent = new Intent(this, FishList.class);
+            Intent intent = new Intent(this, FishListActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_rigging) {
             Intent intent = new Intent(this, Rigging.class);
