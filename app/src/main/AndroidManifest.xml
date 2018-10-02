@@ -24,7 +24,8 @@
         <activity android:name=".Rigging" />
         <activity android:name=".Maps" />
         <activity android:name=".Useful" />
-        <activity android:name=".FishListActivity"></activity>
+        <activity android:name=".FishListActivity" />
+        <activity android:name=".FishInfo"></activity>
     </application>
 
 </manifest>
