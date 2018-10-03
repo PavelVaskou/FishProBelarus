@@ -29,9 +29,6 @@ public class FishListActivity extends AppCompatActivity {
     List<String> fishImage = new ArrayList<>();
     public static List<InformationFish> fishes = new ArrayList<>();
 //--------------------------------------------------------------------------------------------------
-    TextView header;
-
-//--------------------------------------------------------------------------------------------------
     ListView fishList;
 
     @Override
@@ -47,11 +44,6 @@ public class FishListActivity extends AppCompatActivity {
         AdapterView.OnItemClickListener itemListener = new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-
-                // получаем выбранный пункт
-               /* InformationFish informationFish = (InformationFish) parent.getItemAtPosition(position);
-                Toast.makeText(getApplicationContext(), "Был выбран пункт " + informationFish.getId(),
-                        Toast.LENGTH_SHORT).show();*/
                 Intent intent = new Intent(getApplicationContext(), FishInfo.class);
                 intent.putExtra("id", id+1);
                 startActivity(intent);

@@ -4,9 +4,8 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal">
 
-    <ListView android:id="@+id/fishList"
+    <ListView android:id="@+id/reservoirList"
         android:layout_height="match_parent"
         android:layout_width="match_parent" >
-
     </ListView>
 </LinearLayout>
