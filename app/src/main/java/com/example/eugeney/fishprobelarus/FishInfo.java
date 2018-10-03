@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -58,8 +59,7 @@ public class FishInfo extends AppCompatActivity {
         int id = image.getResources().getIdentifier(resImage, "drawable", "com.example.eugeney.fishprobelarus");
         image.setImageResource(id);
         String textInfo = userCursor.getString(INFO);
-        textInfo = textInfo.replace("\n", System.getProperty("line.separator"));
-        info.setText(textInfo);
+        info.setText(Html.fromHtml(textInfo));
         userCursor.close();
     }
 }
