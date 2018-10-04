@@ -2,30 +2,19 @@ package com.example.eugeney.fishprobelarus;
 
 public class InformationReservoir {
 
-    String image;
     String name;
     String info;
-    String deep;
-    String area;
-    String[] pisces;
+    String image;
+    String id;
 
-    public InformationReservoir (String image, String name, String info, String deep, String area, String[] pisces){
+    public InformationReservoir (String id, String name, String info, String image){
         this.name = name;
         this.info = info;
-        this.deep = deep;
-        this.area = area;
-        this.pisces = pisces;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
         this.image = image;
+        this.id = id;
     }
 
-    public void setName (String name){
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -33,7 +22,7 @@ public class InformationReservoir {
         return name;
     }
 
-    public void setInfo (String info){
+    public void setInfo(String info) {
         this.info = info;
     }
 
@@ -41,28 +30,19 @@ public class InformationReservoir {
         return info;
     }
 
-    public void setArea(String area) {
-        this.area = area;
+    public void setImage(String image) {
+        this.image = image;
     }
 
-    public String getArea() {
-        return area;
+    public String getImage() {
+        return image;
     }
 
-    public void setDeep(String deep) {
-        this.deep = deep;
+    public String getId() {
+        return this.id;
     }
 
-    public String getDeep() {
-        return deep;
+    public void setId(String id) {
+        this.id = id;
     }
-
-    public void setPisces(String[] pisces) {
-        this.pisces = pisces;
-    }
-
-    public String[] getPisces() {
-        return pisces;
-    }
-
 }

@@ -10,15 +10,14 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class FishAdapter extends ArrayAdapter<InformationFish> {
-
+public class ReservoirsAdapter extends ArrayAdapter<InformationReservoir> {
     private LayoutInflater inflater;
     private int layout;
-    private List<InformationFish> fishes;
+    private List<InformationReservoir> reservoirs ;
 
-    public FishAdapter(Context context, int resource, List<InformationFish> fishes) {
-        super(context, resource, fishes);
-        this.fishes = fishes;
+    public ReservoirsAdapter(Context context, int resource, List<InformationReservoir> reservoirs) {
+        super(context, resource, reservoirs);
+        this.reservoirs = reservoirs;
         this.layout = resource;
         this.inflater = LayoutInflater.from(context);
     }
@@ -29,11 +28,11 @@ public class FishAdapter extends ArrayAdapter<InformationFish> {
         ImageView fishView = view.findViewById(R.id.image);
         TextView nameView = view.findViewById(R.id.name);
 
-        InformationFish informationFish = fishes.get(position);
+        InformationReservoir informationReservoir = reservoirs.get(position);
 
-        int fishImage = fishView.getResources().getIdentifier(informationFish.getImage(),"drawable","com.example.eugeney.fishprobelarus" );
+        int fishImage = fishView.getResources().getIdentifier(informationReservoir.getImage(),"drawable","com.example.eugeney.fishprobelarus" );
         fishView.setImageResource(fishImage);
-        nameView.setText(informationFish.getName());
+        nameView.setText(informationReservoir.getName());
 
         return view;
     }
