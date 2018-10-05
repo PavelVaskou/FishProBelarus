@@ -38,7 +38,7 @@ public class NavigationActivity extends AppCompatActivity
     final int countInfo = 2;
     final int countImage = 3;
 
-    String[] fishCSV;
+    String[] objCSV;
 
     DatabaseHelper databaseHelper;
     SQLiteDatabase db;
@@ -137,8 +137,8 @@ public class NavigationActivity extends AppCompatActivity
 
     }
     // считывание БД и вывод в LOG
-    public void readDB(){
-        cursor = db.query(DatabaseHelper.TABLE, null, null, null, null, null, null);
+    public void readDBFish(){
+        cursor = db.query(DatabaseHelper.TABLE_FISH, null, null, null, null, null, null);
 
         if (cursor.moveToFirst()) {
             int idIndex = cursor.getColumnIndex(DatabaseHelper.COLUMN_ID);
@@ -147,33 +147,71 @@ public class NavigationActivity extends AppCompatActivity
             int imageIndex = cursor.getColumnIndex(DatabaseHelper.COLUMN_IMAGE);
             do {
                 FishListActivity.fishes.add(new InformationFish(String.valueOf(cursor.getInt(idIndex)),cursor.getString(nameIndex), cursor.getString(infoIndex), cursor.getString(imageIndex)));
-                /*Log.d("mLog", "ID = " + cursor.getInt(idIndex) +
-                        ", name = " + cursor.getString(nameIndex) +
-                        ", info = " + cursor.getString(infoIndex) +
-                        ", Image = " + cursor.getString(imageIndex));*/
+
+            } while (cursor.moveToNext());
+        } else
+            Log.d("mLog","0 rows");
+
+        //cursor1.close();
+       // goHome();
+    }
+
+    public void readDBReservoirs(){
+        cursor = db.query(DatabaseHelper.TABLE_RESERVOIRS, null, null, null, null, null, null);
+
+        if (cursor.moveToFirst()) {
+            int idIndex = cursor.getColumnIndex(DatabaseHelper.COLUMN_ID);
+            int nameIndex = cursor.getColumnIndex(DatabaseHelper.COLUMN_NAME);
+            int infoIndex = cursor.getColumnIndex(DatabaseHelper.COLUMN_INFO);
+            int imageIndex = cursor.getColumnIndex(DatabaseHelper.COLUMN_IMAGE);
+            do {
+                Reservoirs.reservoirs.add(new InformationReservoir(String.valueOf(cursor.getInt(idIndex)),cursor.getString(nameIndex), cursor.getString(infoIndex), cursor.getString(imageIndex)));
+
             } while (cursor.moveToNext());
         } else
             Log.d("mLog","0 rows");
 
         cursor.close();
-        goHome();
+        // goHome();
     }
     // Парсинг CSV  и записваем в БД
-    public void readCSV(){
+    public void readCSVFish(){
         mInputStream = getResources().openRawResource(R.raw.mycsvfile);
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(mInputStream));
         try{
             String csvLine;
             while ((csvLine = reader.readLine()) != null){
-                fishCSV = csvLine.split(";");
+                objCSV = csvLine.split(";");
 
                 ContentValues cv = new ContentValues();
-                cv.put(DatabaseHelper.COLUMN_ID, fishCSV[countId]);
-                cv.put(DatabaseHelper.COLUMN_NAME, fishCSV[countName]);
-                cv.put(DatabaseHelper.COLUMN_INFO, fishCSV[countInfo]);
-                cv.put(DatabaseHelper.COLUMN_IMAGE, fishCSV[countImage]);
-                db.insert(DatabaseHelper.TABLE, null, cv);
+                cv.put(DatabaseHelper.COLUMN_ID, objCSV[countId]);
+                cv.put(DatabaseHelper.COLUMN_NAME, objCSV[countName]);
+                cv.put(DatabaseHelper.COLUMN_INFO, objCSV[countInfo]);
+                cv.put(DatabaseHelper.COLUMN_IMAGE, objCSV[countImage]);
+                db.insert(DatabaseHelper.TABLE_FISH, null, cv);
+            }
+        }
+        catch (IOException ex){
+            throw new RuntimeException("Error in resding CSV file: "+ ex);
+        }
+    }
+
+    public void readCSVReservoirs(){
+        mInputStream = getResources().openRawResource(R.raw.reservoirs);
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader(mInputStream));
+        try{
+            String csvLine;
+            while ((csvLine = reader.readLine()) != null){
+                objCSV = csvLine.split(";");
+
+                ContentValues cv = new ContentValues();
+                cv.put(DatabaseHelper.COLUMN_ID, objCSV[countId]);
+                cv.put(DatabaseHelper.COLUMN_NAME, objCSV[countName]);
+                cv.put(DatabaseHelper.COLUMN_INFO, objCSV[countInfo]);
+                cv.put(DatabaseHelper.COLUMN_IMAGE, objCSV[countImage]);
+                db.insert(DatabaseHelper.TABLE_RESERVOIRS, null, cv);
             }
         }
         catch (IOException ex){
@@ -185,8 +223,11 @@ public class NavigationActivity extends AppCompatActivity
     class ProgressTask extends AsyncTask<Void, Integer, Void> {
         @Override
         protected Void doInBackground(Void... unused) {
-            readCSV();
-            readDB();
+            readCSVFish();
+            readDBFish();
+            readCSVReservoirs();
+            readDBReservoirs();
+            goHome();
             return(null);
         }
         @Override

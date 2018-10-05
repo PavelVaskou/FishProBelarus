@@ -49,7 +49,7 @@ public class FishInfo extends AppCompatActivity {
         }
 
         // получаем элемент по id из бд
-        userCursor = db.rawQuery("select * from " + DatabaseHelper.TABLE + " where " +
+        userCursor = db.rawQuery("select * from " + DatabaseHelper.TABLE_FISH + " where " +
                 DatabaseHelper.COLUMN_ID + "=?", new String[]{String.valueOf(userId)});
         userCursor.moveToFirst();
 
