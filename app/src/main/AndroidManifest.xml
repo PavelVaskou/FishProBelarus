@@ -25,7 +25,9 @@
         <activity android:name=".Maps" />
         <activity android:name=".Useful" />
         <activity android:name=".FishListActivity" />
-        <activity android:name=".FishInfo"></activity>
+        <activity android:name=".FishInfo" />
+        <activity android:name=".Reservoirs_list" />
+        <activity android:name=".ReservoirInfo"></activity>
     </application>
 
 </manifest>

@@ -223,10 +223,11 @@ public class NavigationActivity extends AppCompatActivity
     class ProgressTask extends AsyncTask<Void, Integer, Void> {
         @Override
         protected Void doInBackground(Void... unused) {
-            readCSVFish();
-            readDBFish();
             readCSVReservoirs();
             readDBReservoirs();
+            readCSVFish();
+            readDBFish();
+
             goHome();
             return(null);
         }

@@ -20,15 +20,15 @@ public class Reservoirs extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reservoirs);
-        reservoirList = findViewById(R.id.fishList);
+        reservoirList = findViewById(R.id.reservoirList);
 
-        ReservoirsAdapter reservoirsAdapter = new ReservoirsAdapter(this, R.layout.item_list, reservoirs);
+        ReservoirsAdapter reservoirsAdapter = new ReservoirsAdapter(this, R.layout.reservoirs_list, reservoirs);
         reservoirList.setAdapter(reservoirsAdapter);
 
         AdapterView.OnItemClickListener itemListener = new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                Intent intent = new Intent(getApplicationContext(), FishInfo.class);
+                Intent intent = new Intent(getApplicationContext(), ReservoirInfo.class);
                 intent.putExtra("id", id+1);
                 startActivity(intent);
             }
