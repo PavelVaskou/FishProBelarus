@@ -174,7 +174,7 @@ public class NavigationActivity extends AppCompatActivity
         cursor.close();
         // goHome();
     }
-    // Парсинг CSV  и записваем в БД
+
     public void readCSVFish(){
         mInputStream = getResources().openRawResource(R.raw.mycsvfile);
 
