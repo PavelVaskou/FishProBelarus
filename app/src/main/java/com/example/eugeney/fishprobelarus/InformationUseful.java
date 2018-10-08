@@ -5,19 +5,13 @@ public class InformationUseful {
     String name;
     String info;
     String image;
+    String id;
 
-    public InformationUseful (String name, String info, String image){
+    public InformationUseful (String id, String name, String info, String image){
         this.name = name;
         this.info = info;
         this.image = image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public String getImage() {
-        return image;
+        this.id = id;
     }
 
     public void setName(String name) {
@@ -28,11 +22,27 @@ public class InformationUseful {
         return name;
     }
 
+    public void setInfo(String info) {
+        this.info = info;
+    }
+
     public String getInfo() {
         return info;
     }
 
-    public void setInfo(String info) {
-        this.info = info;
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public String getId() {
+        return this.id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

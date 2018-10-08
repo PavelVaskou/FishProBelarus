@@ -12,7 +12,7 @@ import java.util.List;
 
 import database.DatabaseHelper;
 
-public class ReservoirInfo extends AppCompatActivity {
+public class UsefulInfo extends AppCompatActivity {
 
     public final int NAME = 1;
     public final int INFO = 2;
@@ -27,10 +27,11 @@ public class ReservoirInfo extends AppCompatActivity {
     Cursor userCursor;
     long userId=0;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_reservoir_info);
+        setContentView(R.layout.activity_useful_info);
 
         name = findViewById(R.id.name);
         image = findViewById(R.id.image);
@@ -45,7 +46,7 @@ public class ReservoirInfo extends AppCompatActivity {
         }
 
         // получаем элемент по id из бд
-        userCursor = db.rawQuery("select * from " + DatabaseHelper.TABLE_RESERVOIRS + " where " +
+        userCursor = db.rawQuery("select * from " + DatabaseHelper.TABLE_USEFUL + " where " +
                 DatabaseHelper.COLUMN_ID + "=?", new String[]{String.valueOf(userId)});
         userCursor.moveToFirst();
 

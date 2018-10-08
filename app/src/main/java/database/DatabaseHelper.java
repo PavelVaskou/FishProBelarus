@@ -10,6 +10,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final int SCHEMA = 1; // версия базы данных
     public static final String TABLE_FISH = "fish"; // название таблицы в бд
     public static final String TABLE_RESERVOIRS = "reservoirs";
+    public static final String TABLE_USEFUL = "useful";
     // названия столбцов
     public static final String COLUMN_ID = "_id";
     public static final String COLUMN_NAME = "name";
@@ -18,6 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     static final String CREAT_TABLEFISH = "CREATE TABLE " + TABLE_FISH + "(" + COLUMN_ID + " INTEGER PRIMARY KEY," + COLUMN_NAME + " TEXT," + COLUMN_INFO + " TEXT," + COLUMN_IMAGE + " TEXT" +")";
     static final String CREAT_TABLERESERVOIRS = "CREATE TABLE " + TABLE_RESERVOIRS + "(" + COLUMN_ID + " INTEGER PRIMARY KEY," + COLUMN_NAME + " TEXT," + COLUMN_INFO + " TEXT," + COLUMN_IMAGE + " TEXT" +")";
+    static final String CREAT_TABLEUSEFUL = "CREATE TABLE " + TABLE_USEFUL + "(" + COLUMN_ID + " INTEGER PRIMARY KEY," + COLUMN_NAME + " TEXT," + COLUMN_INFO + " TEXT," + COLUMN_IMAGE + " TEXT" +")";
 
     public DatabaseHelper(Context context) {
 
@@ -29,12 +31,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         db.execSQL(CREAT_TABLEFISH);
         db.execSQL(CREAT_TABLERESERVOIRS);
+        db.execSQL(CREAT_TABLEUSEFUL);
 
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion,  int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS '" + TABLE_FISH + "'");
         db.execSQL("DROP TABLE IF EXISTS '" + TABLE_RESERVOIRS + "'");
+        db.execSQL("DROP TABLE IF EXISTS '" + TABLE_USEFUL + "'");
         onCreate(db);
     }
 }

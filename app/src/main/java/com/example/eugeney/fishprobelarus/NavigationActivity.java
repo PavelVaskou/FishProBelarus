@@ -136,7 +136,7 @@ public class NavigationActivity extends AppCompatActivity
         db.close();
 
     }
-    // считывание БД и вывод в LOG
+    // считывание БД
     public void readDBFish(){
         cursor = db.query(DatabaseHelper.TABLE_FISH, null, null, null, null, null, null);
 
@@ -152,7 +152,7 @@ public class NavigationActivity extends AppCompatActivity
         } else
             Log.d("mLog","0 rows");
 
-        //cursor1.close();
+        cursor.close();
        // goHome();
     }
 
@@ -218,6 +218,45 @@ public class NavigationActivity extends AppCompatActivity
             throw new RuntimeException("Error in resding CSV file: "+ ex);
         }
     }
+    public void readCSVUseful(){
+        mInputStream = getResources().openRawResource(R.raw.userful);
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader(mInputStream));
+        try{
+            String csvLine;
+            while ((csvLine = reader.readLine()) != null){
+                objCSV = csvLine.split(";");
+
+                ContentValues cv = new ContentValues();
+                cv.put(DatabaseHelper.COLUMN_ID, objCSV[countId]);
+                cv.put(DatabaseHelper.COLUMN_NAME, objCSV[countName]);
+                cv.put(DatabaseHelper.COLUMN_INFO, objCSV[countInfo]);
+                cv.put(DatabaseHelper.COLUMN_IMAGE, objCSV[countImage]);
+                db.insert(DatabaseHelper.TABLE_USEFUL, null, cv);
+            }
+        }
+        catch (IOException ex){
+            throw new RuntimeException("Error in resding CSV file: "+ ex);
+        }
+    }
+    public void readDBUseful(){
+        cursor = db.query(DatabaseHelper.TABLE_USEFUL, null, null, null, null, null, null);
+
+        if (cursor.moveToFirst()) {
+            int idIndex = cursor.getColumnIndex(DatabaseHelper.COLUMN_ID);
+            int nameIndex = cursor.getColumnIndex(DatabaseHelper.COLUMN_NAME);
+            int infoIndex = cursor.getColumnIndex(DatabaseHelper.COLUMN_INFO);
+            int imageIndex = cursor.getColumnIndex(DatabaseHelper.COLUMN_IMAGE);
+            do {
+                Useful.useful.add(new InformationUseful(String.valueOf(cursor.getInt(idIndex)),cursor.getString(nameIndex), cursor.getString(infoIndex), cursor.getString(imageIndex)));
+
+            } while (cursor.moveToNext());
+        } else
+            Log.d("mLog","0 rows");
+
+        cursor.close();
+        // goHome();
+    }
 
     //Второй паток - внего входит парсинг, запись и считывание БД
     class ProgressTask extends AsyncTask<Void, Integer, Void> {
@@ -227,6 +266,8 @@ public class NavigationActivity extends AppCompatActivity
             readDBReservoirs();
             readCSVFish();
             readDBFish();
+            readCSVUseful();
+            readDBUseful();
 
             goHome();
             return(null);
