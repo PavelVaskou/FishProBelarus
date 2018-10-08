@@ -17,9 +17,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_INFO= "info";
     public static final String COLUMN_IMAGE= "image";
 
-    static final String CREAT_TABLEFISH = "CREATE TABLE " + TABLE_FISH + "(" + COLUMN_ID + " INTEGER PRIMARY KEY," + COLUMN_NAME + " TEXT," + COLUMN_INFO + " TEXT," + COLUMN_IMAGE + " TEXT" +")";
-    static final String CREAT_TABLERESERVOIRS = "CREATE TABLE " + TABLE_RESERVOIRS + "(" + COLUMN_ID + " INTEGER PRIMARY KEY," + COLUMN_NAME + " TEXT," + COLUMN_INFO + " TEXT," + COLUMN_IMAGE + " TEXT" +")";
-    static final String CREAT_TABLEUSEFUL = "CREATE TABLE " + TABLE_USEFUL + "(" + COLUMN_ID + " INTEGER PRIMARY KEY," + COLUMN_NAME + " TEXT," + COLUMN_INFO + " TEXT," + COLUMN_IMAGE + " TEXT" +")";
+    private static final String CREAT_TABLEFISH = "CREATE TABLE " + TABLE_FISH + "(" + COLUMN_ID + " INTEGER PRIMARY KEY," + COLUMN_NAME + " TEXT," + COLUMN_INFO + " TEXT," + COLUMN_IMAGE + " TEXT" +")";
+    private static final String CREAT_TABLERESERVOIRS = "CREATE TABLE " + TABLE_RESERVOIRS + "(" + COLUMN_ID + " INTEGER PRIMARY KEY," + COLUMN_NAME + " TEXT," + COLUMN_INFO + " TEXT," + COLUMN_IMAGE + " TEXT" +")";
+    private static final String CREAT_TABLEUSEFUL = "CREATE TABLE " + TABLE_USEFUL + "(" + COLUMN_ID + " INTEGER PRIMARY KEY," + COLUMN_NAME + " TEXT," + COLUMN_INFO + " TEXT," + COLUMN_IMAGE + " TEXT" +")";
 
     public DatabaseHelper(Context context) {
 

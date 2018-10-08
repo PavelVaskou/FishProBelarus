@@ -114,7 +114,7 @@ public class NavigationActivity extends AppCompatActivity
             Intent intent = new Intent(this, Rigging.class);
             startActivity(intent);
         } else if (id == R.id.nav_maps) {
-            Intent intent = new Intent(this, Maps.class);
+            Intent intent = new Intent(this, MapsActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_useful) {
             Intent intent = new Intent(this, Useful.class);
@@ -219,7 +219,7 @@ public class NavigationActivity extends AppCompatActivity
         }
     }
     public void readCSVUseful(){
-        mInputStream = getResources().openRawResource(R.raw.userful);
+        mInputStream = getResources().openRawResource(R.raw.useful);
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(mInputStream));
         try{
@@ -263,12 +263,11 @@ public class NavigationActivity extends AppCompatActivity
         @Override
         protected Void doInBackground(Void... unused) {
             readCSVReservoirs();
-            readDBReservoirs();
-            readCSVFish();
-            readDBFish();
             readCSVUseful();
+            readCSVFish();
+            readDBReservoirs();
             readDBUseful();
-
+            readDBFish();
             goHome();
             return(null);
         }
